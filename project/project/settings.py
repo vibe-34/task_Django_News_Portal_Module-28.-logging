@@ -19,7 +19,6 @@ load_dotenv()  # получить доступ к значениям перем�
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -31,36 +30,35 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',                       # обрабатывает запросы по ссылке /accounts/ (поддержка авторизации)
+    'django.contrib.auth',  # обрабатывает запросы по ссылке /accounts/ (поддержка авторизации)
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django.contrib.sites',                      # добавляем для работы с плоскими страницами
-    'django.contrib.flatpages',                  # добавляем для работы с плоскими страницами
+    'django.contrib.sites',  # добавляем для работы с плоскими страницами
+    'django.contrib.flatpages',  # добавляем для работы с плоскими страницами
 
-    'new_portal',                                # созданное приложение
-    'django_filters',                            # сторонний пакет для фильтраций
-    'accounts',                                  # созданное приложение
+    'new_portal',  # созданное приложение
+    'django_filters',  # сторонний пакет для фильтраций
+    'accounts',  # созданное приложение
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.yandex',  # поддержка входа с помощью Yandex
-    'allauth.socialaccount.providers.google',    # Пример провайдера Google
+    'allauth.socialaccount.providers.google',  # Пример провайдера Google
 
-    'django_apscheduler',                        # пакет использует указание времени периодического выполнения задач
+    'django_apscheduler',  # пакет использует указание времени периодического выполнения задач
 ]
 
 SITE_ID = 1
 SITE_URL = 'http://127.0.0.1:8000'
-LOGIN_URL = '/accounts/login/'                    # конкретизирует адрес страницы для аутентификации
+LOGIN_URL = '/accounts/login/'  # конкретизирует адрес страницы для аутентификации
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +83,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',          # для `allauth` обязательно нужен этот процессор
+                'django.template.context_processors.request',  # для `allauth` обязательно нужен этот процессор
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -94,7 +92,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -105,7 +102,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -125,7 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -137,7 +132,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -148,46 +142,103 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]                   # для подгрузки стилей из папки static
+STATICFILES_DIRS = [BASE_DIR / "static"]  # для подгрузки стилей из папки static
 
-LOGIN_REDIRECT_URL = '/'                                   # После входа, нас перебросит на страницу ЛК (index.html)
+LOGIN_REDIRECT_URL = '/'  # После входа, нас перебросит на страницу ЛК (index.html)
 # LOGOUT_REDIRECT_URL = 'post/'                            # после выхода, перекинет по адресу(по default на стр. входа)
 
 # Настройка бэкендов аутентификации
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',      # встроенный бэкенд Django реализующий аутентификацию по username;
+    'django.contrib.auth.backends.ModelBackend',  # встроенный бэкенд Django реализующий аутентификацию по username;
     'allauth.account.auth_backends.AuthenticationBackend',  # бэкенд аутентификации, предоставленный пакетом allauth
 ]
 
 # Настройки для django-allauth
-ACCOUNT_EMAIL_REQUIRED = True                                  # Электронная почта обязательна для регистрации
-ACCOUNT_UNIQUE_EMAIL = True                                    # Электронная почта должна быть уникальной
-ACCOUNT_USERNAME_REQUIRED = False                              # username, Имя пользователя необязательно
-ACCOUNT_AUTHENTICATION_METHOD = 'email'                        # Аутентификация будет выполняться по электронной почте
-ACCOUNT_EMAIL_VERIFICATION = 'none'                            # Верификация электронной почты не требуется
+ACCOUNT_EMAIL_REQUIRED = True  # Электронная почта обязательна для регистрации
+ACCOUNT_UNIQUE_EMAIL = True  # Электронная почта должна быть уникальной
+ACCOUNT_USERNAME_REQUIRED = False  # username, Имя пользователя необязательно
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Аутентификация будет выполняться по электронной почте
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Верификация электронной почты не требуется
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'                     # верификация почты обязательна
 ACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSignupForm'}  # форма добавляющая юзера в группу, при регистрации
 # форма добавляющая юзера в группу, при регистрации через провайдера
 SOCIALACCOUNT_FORMS = {'signup': 'accounts.forms.CustomSocialSignupForm'}
-SOCIALACCOUNT_AUTO_SIGNUP = False                              # Что бы класс CustomSocialSignupForm был вызван
+SOCIALACCOUNT_AUTO_SIGNUP = False  # Что бы класс CustomSocialSignupForm был вызван
 
 # Настройки почты
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # для отправки писем на реальные почтовые адреса
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Для тестирования, печать писем в консоль.
-EMAIL_HOST = 'smtp.yandex.ru'                                # хост почтового сервера
-EMAIL_PORT = 465                                             # порт, на который почтовый сервер принимает письма
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')          # логин пользователя почтового сервера
+EMAIL_HOST = 'smtp.yandex.ru'  # хост почтового сервера
+EMAIL_PORT = 465  # порт, на который почтовый сервер принимает письма
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # логин пользователя почтового сервера
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # пароль пользователя почтового сервера
-EMAIL_USE_TLS = False                                    # необходимость использования TLS (зависит от почтового сервера
-EMAIL_USE_SSL = True                                     # необходимость использования SSL (зависит от почтового сервера
+EMAIL_USE_TLS = False  # необходимость использования TLS (зависит от почтового сервера
+EMAIL_USE_SSL = True  # необходимость использования SSL (зависит от почтового сервера
 
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')  # почтовый адрес отправителя по умолчанию
-SERVER_EMAIL = os.environ.get('SERVER_EMAIL')        # адрес отправителя для системных уведомлений (ошибки, сбои и т.д.)
+SERVER_EMAIL = os.environ.get('SERVER_EMAIL')  # адрес отправителя для системных уведомлений (ошибки, сбои и т.д.)
 
 # Если вы используете Redis Labs, то переменные CELERY_BROKER_URL и CELERY_RESULT_BACKEND должны строиться по шаблону:
 # redis://логин:пароль@endpoint:port где endpoint и port вы также берёте из настроек Redis Labs.
-CELERY_BROKER_URL = 'redis://localhost:6379'       # Указывает на URL брокера сообщений (Redis). По умолчанию порту 6379
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'   # указывает на хранилище результатов выполнения задач
-CELERY_ACCEPT_CONTENT = ['application/json']       # допустимый формат данных
-CELERY_TASK_SERIALIZER = 'json'                    # метод сериализация задач
-CELERY_RESULT_SERIALIZER = 'json'                  # метод сериализация результатов
+CELERY_BROKER_URL = 'redis://localhost:6379'  # Указывает на URL брокера сообщений (Redis). По умолчанию порту 6379
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'  # указывает на хранилище результатов выполнения задач
+CELERY_ACCEPT_CONTENT = ['application/json']  # допустимый формат данных
+CELERY_TASK_SERIALIZER = 'json'  # метод сериализация задач
+CELERY_RESULT_SERIALIZER = 'json'  # метод сериализация результатов
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'filters': {
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
+        },
+
+    'formatters': {
+        'form_debug': {
+            'format': '{asctime} - [{levelname}] - {message}',
+            'style': '{',
+        },
+
+        'form_warning': {
+            'format': '{asctime} - [{levelname}] - {message} - {pathname} ',
+            'style': '{',
+        },
+
+        'form_error': {
+            'format': '{asctime} - [{levelname}] - {message} - {pathname} - {exc_info} ',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'console_d': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'form_debug',
+        },
+
+        'console_w': {
+            'level': 'WARNING',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'form_warning',
+        },
+
+        'console_e': {
+            'level': 'ERROR',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'form_error',
+        },
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['console_d', 'console_w', 'console_e', ],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}
