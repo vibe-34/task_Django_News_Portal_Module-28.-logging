@@ -15,3 +15,4 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000
 2025-02-27 21:28:56,579 - [WARNING] - Forbidden (CSRF token missing.): /post/news/create/ - log
 2025-02-27 21:29:47,741 - [WARNING] - Forbidden (CSRF token missing.): /post/news/create/ - log
 2025-02-27 21:30:05,570 - [WARNING] - Forbidden (CSRF token missing.): /post/news/create/ - log
+2025-02-27 21:55:26,125 - [WARNING] - Forbidden (CSRF token missing.): /post/news/create/ - log

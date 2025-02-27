@@ -179,6 +179,11 @@ EMAIL_USE_SSL = True  # необходимость использования SS
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')  # почтовый адрес отправителя по умолчанию
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL')  # адрес отправителя для системных уведомлений (ошибки, сбои и т.д.)
 
+# данному списку администраторов будет приходить оповещение
+ADMINS = [
+    ('administrator', 'servisvlg4@mail.ru'),
+]
+
 # Если вы используете Redis Labs, то переменные CELERY_BROKER_URL и CELERY_RESULT_BACKEND должны строиться по шаблону:
 # redis://логин:пароль@endpoint:port где endpoint и port вы также берёте из настроек Redis Labs.
 CELERY_BROKER_URL = 'redis://localhost:6379'  # Указывает на URL брокера сообщений (Redis). По умолчанию порту 6379
@@ -202,7 +207,7 @@ LOGGING = {
             'style': '{',
         },
 
-        'form_warning': {
+        'form_warning_mail': {
             'format': '{asctime} - [{levelname}] - {message} - {pathname} ',
             'style': '{',
         },
@@ -230,7 +235,7 @@ LOGGING = {
             'level': 'WARNING',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'form_warning',
+            'formatter': 'form_warning_mail',
         },
 
         'console_e': {
@@ -261,6 +266,13 @@ LOGGING = {
             'formatter': 'general_security_info',
             'filename': 'security.log',
         },
+
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'form_warning_mail',
+        },
     },
 
     'loggers': {
@@ -271,13 +283,13 @@ LOGGING = {
         },
 
         'django.request': {
-            'handlers': ['errors_hand', ],
+            'handlers': ['errors_hand', 'mail_admins', ],
             'level': 'ERROR',
             'propagate': True,
         },
 
         'django.server': {
-            'handlers': ['errors_hand', ],
+            'handlers': ['errors_hand', 'mail_admins', ],
             'level': 'ERROR',
             'propagate': True,
         },
