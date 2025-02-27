@@ -315,3 +315,9 @@ django.template.exceptions.TemplateDoesNotExist: WWWcreate_post.html
 2025-02-27 22:12:29,461 - [ERROR] - "GET /post/news/create/ HTTP/1.1" 500 145 - basehttp
 2025-02-27 22:12:44,940 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\new_portal\views.py changed, reloading. - autoreload
 2025-02-27 22:12:45,878 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 22:41:39,644 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 22:41:40,617 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 22:41:59,510 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 22:42:00,445 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 22:42:05,347 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 22:42:06,282 - [INFO] - Watching for file changes with StatReloader - autoreload

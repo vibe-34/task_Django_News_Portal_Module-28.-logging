@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-51s!$gxxwy1yv6p=vwse-0xk1*ddqmgv9!b1qi+6b&+ncoku0+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -192,35 +192,36 @@ CELERY_ACCEPT_CONTENT = ['application/json']  # допустимый форма�
 CELERY_TASK_SERIALIZER = 'json'  # метод сериализация задач
 CELERY_RESULT_SERIALIZER = 'json'  # метод сериализация результатов
 
+# номера в комментариях - это пункты из итогового задания к которым относится конкретная часть кода
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
 
     'filters': {
-        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
-        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},    # 1
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},  # 5 и 2
         },
 
     'formatters': {
         'form_debug': {
             'format': '{asctime} - [{levelname}] - {message}',
             'style': '{',
-        },
+        },  # 1
 
         'form_warning_mail': {
             'format': '{asctime} - [{levelname}] - {message} - {pathname} ',
             'style': '{',
-        },
+        },  # 1 и 5
 
         'form_error': {
             'format': '{asctime} - [{levelname}] - {message} - {pathname} - {exc_info} ',
             'style': '{',
-        },
+        },  # 1 и 3
 
         'general_security_info': {
             'format': '{asctime} - [{levelname}] - {message} - {module}',
             'style': '{',
-        },
+        },  # 2 и 4
     },
 
     'handlers': {
@@ -229,21 +230,21 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'form_debug',
-        },
+        },  # 1
 
         'console_w': {
             'level': 'WARNING',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'form_warning_mail',
-        },
+        },  # 1
 
         'console_e': {
             'level': 'ERROR',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'form_error',
-        },
+        },  # 1
 
         'general_hand': {
             'level': 'INFO',
@@ -251,65 +252,65 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'general_security_info',
             'filename': 'general.log',
-        },
+        },  # 2
 
         'errors_hand': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'formatter': 'form_error',
             'filename': 'errors.log',
-        },
+        },  # 3
 
         'security_hand': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'formatter': 'general_security_info',
             'filename': 'security.log',
-        },
+        },  # 4
 
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'form_warning_mail',
-        },
+        },  # 5
     },
 
     'loggers': {
         'django': {
             'handlers': ['console_d', 'console_w', 'console_e', 'general_hand', ],
-            'level': 'INFO',  # TODO перед сдачей работы, поменять на DEBUG
+            'level': 'DEBUG',
             'propagate': True,
-        },
+        },  # 1 и 2
 
         'django.request': {
             'handlers': ['errors_hand', 'mail_admins', ],
             'level': 'ERROR',
             'propagate': True,
-        },
+        },  # 3 и 5
 
         'django.server': {
             'handlers': ['errors_hand', 'mail_admins', ],
             'level': 'ERROR',
             'propagate': True,
-        },
+        },  # 3 и 5
 
         'django.template': {
             'handlers': ['errors_hand', ],
             'level': 'ERROR',
             'propagate': True,
-        },
+        },  # 3
 
         'django.db.backends': {
             'handlers': ['errors_hand', ],
             'level': 'ERROR',
             'propagate': True,
-        },
+        },  # 3
 
         'django.security': {
             'handlers': ['security_hand', ],
             'level': 'INFO',
             'propagate': False,
-        },
+        },  # 4
     }
 }
