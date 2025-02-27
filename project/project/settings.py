@@ -26,9 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-51s!$gxxwy1yv6p=vwse-0xk1*ddqmgv9!b1qi+6b&+ncoku0+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -192,6 +193,7 @@ LOGGING = {
 
     'filters': {
         'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue'},
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'},
         },
 
     'formatters': {
@@ -207,6 +209,11 @@ LOGGING = {
 
         'form_error': {
             'format': '{asctime} - [{levelname}] - {message} - {pathname} - {exc_info} ',
+            'style': '{',
+        },
+
+        'general_info': {
+            'format': '{asctime} - [{levelname}] - {message} - {module}',
             'style': '{',
         },
     },
@@ -232,12 +239,20 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'form_error',
         },
+
+        'general_hand': {
+            'level': 'INFO',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'formatter': 'general_info',
+            'filename': 'general.log',
+        },
     },
 
     'loggers': {
         'django': {
-            'handlers': ['console_d', 'console_w', 'console_e', ],
-            'level': 'DEBUG',
+            'handlers': ['console_d', 'console_w', 'console_e', 'general_hand', ],
+            'level': 'INFO',  # TODO перед сдачей работы, поменять на DEBUG
             'propagate': True,
         },
     }
