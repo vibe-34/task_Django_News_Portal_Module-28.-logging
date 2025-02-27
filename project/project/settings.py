@@ -137,7 +137,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # для сбора всех статических файлов в папку staticfiles
 STATICFILES_DIRS = [BASE_DIR / "static"]  # для подгрузки стилей из папки static
 
 # Default primary key field type
@@ -212,7 +212,7 @@ LOGGING = {
             'style': '{',
         },
 
-        'general_info': {
+        'general_security_info': {
             'format': '{asctime} - [{levelname}] - {message} - {module}',
             'style': '{',
         },
@@ -244,7 +244,7 @@ LOGGING = {
             'level': 'INFO',
             'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
-            'formatter': 'general_info',
+            'formatter': 'general_security_info',
             'filename': 'general.log',
         },
 
@@ -253,6 +253,13 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'form_error',
             'filename': 'errors.log',
+        },
+
+        'security_hand': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'general_security_info',
+            'filename': 'security.log',
         },
     },
 
@@ -285,6 +292,12 @@ LOGGING = {
             'handlers': ['errors_hand', ],
             'level': 'ERROR',
             'propagate': True,
+        },
+
+        'django.security': {
+            'handlers': ['security_hand', ],
+            'level': 'INFO',
+            'propagate': False,
         },
     }
 }

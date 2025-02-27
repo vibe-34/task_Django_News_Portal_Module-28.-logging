@@ -201,3 +201,17 @@ django.template.exceptions.TemplateDoesNotExist: Wcreate_post.html
 2025-02-27 21:10:54,686 - [INFO] - Watching for file changes with StatReloader - autoreload
 2025-02-27 21:11:58,970 - [INFO] - Watching for file changes with StatReloader - autoreload
 2025-02-27 21:12:34,512 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:17:23,734 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:17:24,682 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:19:52,433 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:22:05,250 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:23:45,748 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:23:46,734 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:24:21,688 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:24:22,578 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:25:41,775 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:25:42,666 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:26:24,417 - [INFO] - C:\Users\Andrey\Projects\task_Django_News_Portal_Module-28.-logging\project\project\settings.py changed, reloading. - autoreload
+2025-02-27 21:26:25,308 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:27:30,775 - [INFO] - Watching for file changes with StatReloader - autoreload
+2025-02-27 21:29:58,403 - [INFO] - Watching for file changes with StatReloader - autoreload
