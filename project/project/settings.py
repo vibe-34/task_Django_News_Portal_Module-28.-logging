@@ -247,12 +247,43 @@ LOGGING = {
             'formatter': 'general_info',
             'filename': 'general.log',
         },
+
+        'errors_hand': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'form_error',
+            'filename': 'errors.log',
+        },
     },
 
     'loggers': {
         'django': {
             'handlers': ['console_d', 'console_w', 'console_e', 'general_hand', ],
             'level': 'INFO',  # TODO перед сдачей работы, поменять на DEBUG
+            'propagate': True,
+        },
+
+        'django.request': {
+            'handlers': ['errors_hand', ],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.server': {
+            'handlers': ['errors_hand', ],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.template': {
+            'handlers': ['errors_hand', ],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+
+        'django.db.backends': {
+            'handlers': ['errors_hand', ],
+            'level': 'ERROR',
             'propagate': True,
         },
     }
